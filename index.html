@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>
-  </body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Dancing Penguin!</title>
+		<link rel="stylesheet" type="text/css" href="https://statics.teams.microsoft.com/hashedcss/stylesheets.theme-default.min-d246adc6.css" media="screen" />
+		<style>
+			html,body {
+				opacity: 1;
+				min-width: 0;
+				min-height: 0;
+				background: none;
+			}
+		</style>
+	</head>
+	<body>
+		<span id="penguin" class="animated-emoticon-50-penguin" title="Penguin" type="(penguin)"
+			contenteditable="false"><img alt="🐧" itemid="penguin" itemscope=""
+				itemtype="http://schema.skype.com/Emoji"
+				src="https://statics.teams.microsoft.com/evergreen-assets/funstuff/skype-emoticons-f/penguin/default_50.png"
+				style="width:50px;height:50px;"><span
+				class="zoetrope"></span></span>
+	</body>
 
-  <script>
-    // You can also require other files to run in this process
-    require('./dist/renderer.js')
-  </script>
+	<script>
+		// You can also require other files to run in this process
+//		require('./dist/renderer.js')
+		var drag = require('electron-drag');
+
+		// Pass a query selector or a dom element to the function.
+		// Dragging the element will drag the whole window.
+		var clear = drag('#penguin');
+
+		// Fallback to using -webkit-app-region property.
+		if(!drag.supported) {
+			document.querySelector('#penguin').style['-webkit-app-region'] = 'drag';
+		}
+
+		// Call the returned function to make the element undraggable again.
+		// clear();
+	</script>
 </html>
